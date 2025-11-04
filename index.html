@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maryland Farm-to-School CTE Innovation | AI-Powered Agricultural Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --md-red: #C8102E;
+            --md-gold: #FFD520;
+            --md-black: #000000;
+            --farm-green: #2E7D32;
+            --sky-blue: #0277BD;
+            --earth-brown: #5D4037;
+            --harvest-orange: #F57C00;
+            --text-dark: #212121;
+            --text-light: #FAFAFA;
+            --gradient-1: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
+            --gradient-2: linear-gradient(135deg, #0277BD 0%, #4FC3F7 100%);
+            --gradient-3: linear-gradient(135deg, #F57C00 0%, #FFB74D 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a472a 0%, #2E7D32 50%, #66BB6A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.03) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--text-light);
+            z-index: 10;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 .highlight {
+            color: var(--md-gold);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--md-gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--md-gold);
+            color: var(--md-black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 213, 32, 0.4);
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 213, 32, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--farm-green);
+        }
+
+        /* Problem/Solution */
+        .problem-solution {
+            background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 5px solid #c62828;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid var(--farm-green);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            background: var(--gradient-2);
+            color: var(--text-light);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Student Journey */
+        .student-journey {
+            background: #ffffff;
+        }
+
+        .journey-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .journey-step {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .journey-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 50px;
+            width: 2px;
+            height: 100%;
+            background: var(--farm-green);
+        }
+
+        .journey-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+            z-index: 1;
+        }
+
+        .step-content {
+            margin-left: 2rem;
+            flex: 1;
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--farm-green);
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--farm-green);
+        }
+
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .step-outcomes {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .outcome-badge {
+            background: var(--farm-green);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Impact Dashboard */
+        .impact-section {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+            color: var(--text-light);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--md-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .impact-description {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* Interactive Demo */
+        .demo-section {
+            background: #fafafa;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .demo-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--farm-green);
+        }
+
+        .demo-button {
+            background: var(--farm-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .demo-button:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+
+        .demo-output {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            min-height: 150px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* AI Features */
+        .ai-features {
+            background: var(--gradient-3);
+            color: var(--text-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Partner Logos */
+        .partners-section {
+            background: white;
+            padding: 3rem 2rem;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            opacity: 1;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--md-gold);
+            color: var(--md-black);
+            box-shadow: 0 4px 15px rgba(255, 213, 32, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 213, 32, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--farm-green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--md-black);
+            color: var(--text-light);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Let's <span class="highlight">GrOw</span> Maryland!</h1>
+            <p class="hero-subtitle">AI-Powered Farm-to-School CTE Innovation Across 24 LEAs</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">24</span>
+                    <span class="stat-label">School Districts</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1,000+</span>
+                    <span class="stat-label">Students Impacted</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$250K</span>
+                    <span class="stat-label">Grant Funded</span>
+                </div>
+            </div>
+            
+            <a href="#demo" class="cta-button">See The Platform ↓</a>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="section problem-solution">
+        <h2 class="section-title">From Challenge to Opportunity</h2>
+        
+        <div class="comparison-grid fade-in">
+            <div class="comparison-card problem-card">
+                <div class="card-icon">⚠️</div>
+                <h3 class="card-title">The Challenge</h3>
+                <div class="card-text">
+                    <p>• Students consume technology but don't create it</p>
+                    <p>• Limited access to agricultural career pathways</p>
+                    <p>• Food security concerns in communities</p>
+                    <p>• Disconnect between education and employment</p>
+                    <p>• Traditional CTE programs lack modern tech integration</p>
+                </div>
+            </div>
+            
+            <div class="comparison-card solution-card">
+                <div class="card-icon">✨</div>
+                <h3 class="card-title">Our Solution</h3>
+                <div class="card-text">
+                    <p>• <strong>AI Producers Lab:</strong> Students BUILD AI tools for agriculture</p>
+                    <p>• <strong>Farm-to-School:</strong> Real businesses, real revenue</p>
+                    <p>• <strong>Food + Jobs:</strong> Supply nutritious food, create employment</p>
+                    <p>• <strong>CTE Pathways:</strong> Industry credentials + college credit</p>
+                    <p>• <strong>Tech Skills:</strong> Python, AI, APIs, databases, business</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Journey -->
+    <section class="section student-journey">
+        <h2 class="section-title">The Student Journey</h2>
+        
+        <div class="journey-timeline fade-in">
+            <div class="journey-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">🌱 Entry: Production Assistant</div>
+                    <div class="step-description">
+                        Students start hands-on: planting, harvesting, learning growing basics. 
+                        AI assistant guides them through crop planning and pest identification.
+                    </div>
+                    <div class="step-outcomes">
+                        <span class="outcome-badge">ServSafe Certified</span>
+                        <span class="outcome-badge">$12/hr</span>
+                        <span class="outcome-badge">5-10 hrs/week</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="journey-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">📊 Intermediate: Operations Coordinator</div>
+                    <div class="step-description">
+                        Managing production schedules, inventory, customer orders. 
+                        Building AI tools: chatbot for customers, route optimizer for deliveries.
+                    </div>
+                    <div class="step-outcomes">
+                        <span class="outcome-badge">GAP Certified</span>
+                        <span class="outcome-badge">$15/hr</span>
+                        <span class="outcome-badge">Python Skills</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="journey-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">💼 Advanced: Business Manager</div>
+                    <div class="step-description">
+                        Running student farm enterprise: pricing strategy, marketing, financial management. 
+                        Developing MCP servers for farm automation, training AI models on crop data.
+                    </div>
+                    <div class="step-outcomes">
+                        <span class="outcome-badge">Business Management</span>
+                        <span class="outcome-badge">$18/hr</span>
+                        <span class="outcome-badge">AI Developer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="journey-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">🎓 Graduate: Career Ready</div>
+                    <div class="step-description">
+                        College acceptance with agricultural technology focus, direct hire by partner farms, 
+                        or entrepreneurship launching their own farm operation.
+                    </div>
+                    <div class="step-outcomes">
+                        <span class="outcome-badge">6 Industry Credentials</span>
+                        <span class="outcome-badge">Portfolio of AI Tools</span>
+                        <span class="outcome-badge">Career Placement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="section tech-stack">
+        <h2 class="section-title" style="color: white;">Powered by Open-Source Technology</h2>
+        
+        <div class="tech-grid fade-in">
+            <div class="tech-card">
+                <div class="tech-icon">🤖</div>
+                <div class="tech-title">AI Assistant</div>
+                <div class="tech-description">Claude-powered tutoring for crop planning, pest identification, business decisions</div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">📊</div>
+                <div class="tech-title">USDA Data APIs</div>
+                <div class="tech-description">Real agricultural statistics, soil data, weather forecasts for Maryland</div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">🛒</div>
+                <div class="tech-title">E-Commerce Platform</div>
+                <div class="tech-description">Student-run online stores with payment processing and order management</div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">🚚</div>
+                <div class="tech-title">Route Optimization</div>
+                <div class="tech-description">AI-powered delivery planning saving time, fuel, and maximizing efficiency</div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">💾</div>
+                <div class="tech-title">Vector Database</div>
+                <div class="tech-description">Agricultural knowledge base: growing guides, pest management, best practices</div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">🔧</div>
+                <div class="tech-title">MCP Servers</div>
+                <div class="tech-description">Students build custom tools connecting AI to farm operations</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Dashboard -->
+    <section class="section impact-section">
+        <h2 class="section-title" style="color: white;">Projected Impact (Year 1)</h2>
+        
+        <div class="impact-grid fade-in">
+            <div class="impact-card">
+                <span class="impact-number">100K</span>
+                <div class="impact-label">Pounds of Food</div>
+                <div class="impact-description">Nutritious produce for school cafeterias and community</div>
+            </div>
+            
+            <div class="impact-card">
+                <span class="impact-number">500+</span>
+                <div class="impact-label">Student Jobs</div>
+                <div class="impact-description">Part-time during school, full-time in summer</div>
+            </div>
+            
+            <div class="impact-card">
+                <span class="impact-number">$300K</span>
+                <div class="impact-label">Revenue Generated</div>
+                <div class="impact-description">Student earnings + program sustainability</div>
+            </div>
+            
+            <div class="impact-card">
+                <span class="impact-number">1,200</span>
+                <div class="impact-label">Credentials Earned</div>
+                <div class="impact-description">Industry-recognized certifications across pathways</div>
+            </div>
+            
+            <div class="impact-card">
+                <span class="impact-number">24</span>
+                <div class="impact-label">LEAs Connected</div>
+                <div class="impact-description">Every Maryland school district participating</div>
+            </div>
+            
+            <div class="impact-card">
+                <span class="impact-number">95%</span>
+                <div class="impact-label">Career Placement</div>
+                <div class="impact-description">College admission, employment, or entrepreneurship</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="section ai-features">
+        <h2 class="section-title" style="color: white;">AI-Powered Learning Features</h2>
+        
+        <div class="features-grid fade-in">
+            <div class="feature-card">
+                <div class="feature-icon">🌾</div>
+                <div class="feature-title">Crop Planning AI</div>
+                <div class="feature-description">
+                    "I want to grow tomatoes for our cafeteria" → AI creates complete planting plan 
+                    with timeline, materials, costs, and yields
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <div class="feature-title">Plant Health Diagnosis</div>
+                <div class="feature-description">
+                    Students take photos of sick plants → AI identifies disease/pest, 
+                    recommends treatment, tracks recovery
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Smart Pricing</div>
+                <div class="feature-description">
+                    AI analyzes market prices, production costs, competitor rates → 
+                    suggests optimal pricing for maximum profit
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Personalized Learning</div>
+                <div class="feature-description">
+                    Tracks student progress, identifies skill gaps, recommends next projects 
+                    aligned to CTE competencies
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <div class="feature-title">Auto-Documentation</div>
+                <div class="feature-description">
+                    Students describe work → AI generates portfolio entries, maps to competencies, 
+                    creates resumes
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <div class="feature-title">Route Optimization</div>
+                <div class="feature-description">
+                    15 deliveries today → AI calculates most efficient routes, 
+                    saves time and fuel, sends customer notifications
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="section demo-section" id="demo">
+        <h2 class="section-title">Try the Platform</h2>
+        
+        <div class="demo-container fade-in">
+            <div class="demo-box">
+                <div class="demo-title">🌱 Crop Planning Assistant</div>
+                <p>Ask the AI to help plan your farm:</p>
+                <button class="demo-button" onclick="runCropPlanning()">
+                    "Plan tomato crop for school cafeteria"
+                </button>
+                <div class="demo-output" id="crop-output">
+                    Click the button to see AI-powered crop planning...
+                </div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">📊 Market Price Analysis</div>
+                <p>Get real-time pricing intelligence:</p>
+                <button class="demo-button" onclick="runPricing()">
+                    Analyze Maryland Tomato Prices
+                </button>
+                <div class="demo-output" id="pricing-output">
+                    Click the button to see market analysis...
+                </div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">🚚 Route Optimization</div>
+                <p>Optimize delivery routes:</p>
+                <button class="demo-button" onclick="runRouting()">
+                    Optimize 10 Deliveries in Baltimore
+                </button>
+                <div class="demo-output" id="routing-output">
+                    Click the button to see route optimization...
+                </div>
+            </div>
+            
+            <div class="demo-box">
+                <div class="demo-title">⭐ Student Portfolio</div>
+                <p>Auto-generate competency documentation:</p>
+                <button class="demo-button" onclick="runPortfolio()">
+                    Generate Portfolio Entry
+                </button>
+                <div class="demo-output" id="portfolio-output">
+                    Click the button to see portfolio generation...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="partners-section">
+        <h2 class="section-title">Built for Maryland</h2>
+        <div class="partner-logos">
+            <div class="partner-logo">🏛️ MSDE</div>
+            <div class="partner-logo">🌾 Maryland FFA</div>
+            <div class="partner-logo">🎓 CTE Programs</div>
+            <div class="partner-logo">🌱 Maryland Dept of Agriculture</div>
+            <div class="partner-logo">🤝 Baltimore AI Lab</div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to GrOw with Us?</h2>
+        <p>Let's transform agricultural education in Maryland together</p>
+        
+        <div class="cta-buttons">
+            <a href="mailto:will@mindgrub.com" class="btn-primary">Schedule a Demo</a>
+            <a href="#" class="btn-secondary" onclick="downloadPitch(); return false;">Download Pitch Deck</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link">About</a>
+                <a href="#" class="footer-link">Technology</a>
+                <a href="#" class="footer-link">Impact</a>
+                <a href="#" class="footer-link">Partners</a>
+                <a href="mailto:will@mindgrub.com" class="footer-link">Contact</a>
+            </div>
+            <p>&copy; 2025 Maryland Farm-to-School CTE Innovation | Baltimore AI Producers Lab</p>
+            <p style="opacity: 0.7; margin-top: 1rem; font-size: 0.9rem;">
+                Powered by Mindgrub Technologies | MSDE Division of College and Career Pathways
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Demo functions
+        function runCropPlanning() {
+            const output = document.getElementById('crop-output');
+            output.innerHTML = '<div class="loading"></div> Analyzing with AI...';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+<strong>🌱 Crop Plan Generated:</strong>
+
+<strong>Crop:</strong> Roma Tomatoes (determinate)
+<strong>Space:</strong> 20x30ft raised beds (600 sq ft)
+<strong>Plants:</strong> 48 plants (12" spacing)
+<strong>Timeline:</strong> 
+  • Start seeds: March 15
+  • Transplant: May 1
+  • First harvest: July 15
+  • Peak season: July-September
+
+<strong>Expected Yield:</strong> 960 lbs (20 lbs/plant)
+<strong>Cafeteria Need:</strong> 800 lbs
+<strong>Surplus:</strong> 160 lbs for farmers market
+
+<strong>Input Costs:</strong> $180
+<strong>Revenue:</strong> $1,920 @ $2/lb
+<strong>Profit Margin:</strong> 91% 🎉
+
+✅ Plan saved to student dashboard
+✅ Tasks added to calendar
+✅ Supply list generated
+                `;
+            }, 2000);
+        }
+
+        function runPricing() {
+            const output = document.getElementById('pricing-output');
+            output.innerHTML = '<div class="loading"></div> Fetching market data...';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+<strong>📊 Market Analysis - MD Tomatoes:</strong>
+
+<strong>Farmers Markets:</strong>
+  • Baltimore: $3.50/lb avg
+  • Columbia: $3.25/lb avg
+  • Annapolis: $4.00/lb avg
+
+<strong>Competitors:</strong>
+  • Organic: $4.50/lb
+  • Conventional: $2.50/lb
+  • Your cost: $0.19/lb
+
+<strong>AI Recommendation:</strong>
+  Price at <strong>$2.00/lb</strong>
+  • 950% markup
+  • Undercuts organic by 56%
+  • Premium over conventional 20%
+  • Volume discount opportunity
+
+<strong>Strategy:</strong> Position as "student-grown, 
+AI-managed, ultra-fresh" - emphasize 
+local + educational mission
+                `;
+            }, 2000);
+        }
+
+        function runRouting() {
+            const output = document.getElementById('routing-output');
+            output.innerHTML = '<div class="loading"></div> Optimizing routes...';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+<strong>🚚 Route Optimized:</strong>
+
+<strong>Original Route:</strong> 42 miles, 2.5 hours
+<strong>Optimized Route:</strong> 28 miles, 1.8 hours
+
+<strong>Savings:</strong>
+  • 14 miles (33% reduction)
+  • 42 minutes saved
+  • $8.40 fuel saved
+  • 6.2 kg CO2 reduced
+
+<strong>Delivery Sequence:</strong>
+1. School #1 (10:00 AM) - ✓ On route
+2. School #3 (10:15 AM) - ✓ Nearby
+3. School #7 (10:35 AM) - ✓ Optimized
+... + 7 more stops
+
+✅ SMS sent to all customers
+✅ Driver app updated
+✅ Live tracking enabled
+                `;
+            }, 2000);
+        }
+
+        function runPortfolio() {
+            const output = document.getElementById('portfolio-output');
+            output.innerHTML = '<div class="loading"></div> Generating documentation...';
+            
+            setTimeout(() => {
+                output.innerHTML = `
+<strong>📝 Portfolio Entry Created:</strong>
+
+<strong>Project:</strong> "Summer Tomato Enterprise"
+<strong>Student:</strong> [Demo Student]
+<strong>Duration:</strong> 16 weeks
+
+<strong>Competencies Demonstrated:</strong>
+✓ Agricultural Production (CTE Standard 2.1)
+✓ Business Management (CTE Standard 4.2)
+✓ Technology Integration (CTE Standard 5.3)
+✓ Financial Literacy (CTE Standard 4.4)
+
+<strong>Skills Developed:</strong>
+• Python programming (route optimizer)
+• Data analysis (yield tracking)
+• Customer service (order management)
+• Leadership (team coordination)
+
+<strong>Quantified Results:</strong>
+• 960 lbs produced
+• $1,740 revenue
+• 15% profit increase via AI tools
+
+✅ Mapped to transcript
+✅ Added to resume
+✅ IRC progress: 4/6 complete
+                `;
+            }, 2000);
+        }
+
+        function downloadPitch() {
+            alert('Pitch deck download coming soon! Contact will@mindgrub.com for full presentation.');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add some interactivity on load
+        window.addEventListener('load', () => {
+            console.log('🌱 Let\'s GrOw Maryland! Platform loaded successfully.');
+        });
+    </script>
+</body>
+</html>
